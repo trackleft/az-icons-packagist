@@ -12,7 +12,7 @@
     "support": {
       "issues": "https://github.com/az-digital/az-icons/issues"
     },
-    "license": "MIT",
+    "license": "proprietary",
     "type": "drupal-library",
     "require": {
         "composer/installers": "*"
