@@ -1,4 +1,5 @@
 # Arizona Icons Packagist Repo
+https://packagist.org/packages/az-digital/az-icons
 
 Composer package that contains the Arizona Icons assets for
 use by PHP / Drupal projects.
