@@ -1,16 +1,16 @@
 name: Create Release
+run-name: Create `${{ github.event.client_payload.version }}` release.
 on:
   repository_dispatch:
     types: az_icons_release
-
 jobs:
   release:
     name: Create Release
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           ssh-key: ${{ secrets.SELF_DEPLOY_KEY }}
 
@@ -18,7 +18,7 @@ jobs:
         run: echo "AZ_ICONS_CLONE_DIR=az-icons" >> ${GITHUB_ENV}
 
       - name: Get new updates from az-icons
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: az-digital/az-icons
           path: ${{ env.AZ_ICONS_CLONE_DIR }}
@@ -51,17 +51,17 @@ jobs:
     strategy:
       matrix:
         repo:
-          - az-digital/az_quickstart
+          - trackleft/az_quickstart
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Get release data
         run: |
           sha=$(git rev-parse HEAD)
           echo "RELEASE_SHA=${sha}" >> ${GITHUB_ENV}
       - name: Notify dependencies
-        uses: peter-evans/repository-dispatch@1708dda5703a768a0fb0ef6a7a03a0c3805ebc59
+        uses: peter-evans/repository-dispatch@2
         with:
           token: ${{ secrets.REPO_DISPATCH_TOKEN }}
           repository: ${{ matrix.repo }}
